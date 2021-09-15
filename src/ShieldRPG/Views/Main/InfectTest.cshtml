@@ -1,0 +1,28 @@
+﻿@model ShieldRPG.Models.InfectRequest
+
+@{
+    ViewData["Title"] = "Анализ на наличие инфекций";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="InfectRequest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="InfectCode" class="control-label"></label>
+                <input asp-for="InfectCode" class="form-control" />
+                <span asp-validation-for="InfectCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Запрос" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

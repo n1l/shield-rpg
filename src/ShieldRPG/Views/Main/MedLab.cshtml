@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<ul class="lab-tests">
+    <li>
+        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "DnaTest" }, Context.Request.Scheme)', 'Анализ ДНК')"
+           class="btn btn-success">Анализ ДНК</a>
+    </li>
+    <li>
+        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "ToxinsTest" }, Context.Request.Scheme)', 'Анализ на токсины')"
+           class="btn btn-success">Анализ на токсины</a>
+    </li>
+    <li>
+        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "InfectTest" }, Context.Request.Scheme)','Анализ на наличие инфекций')"
+           class="btn btn-success">Анализ на наличие инфекций</a>
+    </li>
+    <li>
+        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "SubstanceTest" }, Context.Request.Scheme)', 'Анализ структуры вещества')"
+           class="btn btn-success">Анализ структуры вещества</a>
+    </li>
+    <li>
+        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "MrtTest" }, Context.Request.Scheme)', 'Мрт, КТ, рентген тела')"
+           class="btn btn-success">Мрт, КТ, рентген тела</a>
+    </li>
+</ul>
