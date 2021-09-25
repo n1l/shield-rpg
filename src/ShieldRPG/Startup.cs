@@ -26,7 +26,7 @@ namespace ShieldRPG
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<DataRepository>();
-            services.AddSingleton<RequestsToMasterRepository>();
+            services.AddSingleton<CenterLabRequestsRepository>();
             services.AddSingleton<UserRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddMvc();

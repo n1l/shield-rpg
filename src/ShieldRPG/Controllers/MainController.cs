@@ -17,11 +17,13 @@ namespace ShieldRPG.Controllers
     {
         private readonly ILogger<MainController> _logger;
         private readonly DataRepository _dataRepository;
+        private readonly CenterLabRequestsRepository _centerLabRepository;
 
-        public MainController(ILogger<MainController> logger, DataRepository dataRepository)
+        public MainController(ILogger<MainController> logger, DataRepository dataRepository, CenterLabRequestsRepository centerLabRepository)
         {
             _logger = logger;
             _dataRepository = dataRepository;
+            _centerLabRepository = centerLabRepository;
         }
 
         public IActionResult Index()
@@ -44,17 +46,13 @@ namespace ShieldRPG.Controllers
             return View();
         }
 
+        public IActionResult CenterLab()
+        {
+            ClaimsPrincipal principal = HttpContext.User;
+            return View(_centerLabRepository.GetRequests(principal.Identity.Name));
+        }
+
         public IActionResult ShieldDb()
-        {
-            return View();
-        }
-
-        public IActionResult InterpolDb()
-        {
-            return View();
-        }
-
-        public IActionResult FbiDb()
         {
             return View();
         }
@@ -101,6 +99,21 @@ namespace ShieldRPG.Controllers
         public IActionResult MrtRequest(MrtRequest substanceRequest)
         {
             return View();
+        }
+
+        /*------------------------------ */
+
+        public IActionResult CenterLabTest()
+        {
+            return View("CenterLabTest");
+        }
+
+        [HttpPost]
+        public IActionResult CenterLabRequest(CenterLabRequest centerLabRequest)
+        {
+            ClaimsPrincipal principal = HttpContext.User;
+            _centerLabRepository.AddRequest(principal.Identity.Name, centerLabRequest);
+            return RedirectToAction("CenterLab");
         }
 
         /*------------------------------ */

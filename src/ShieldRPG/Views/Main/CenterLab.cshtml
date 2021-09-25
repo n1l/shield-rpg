@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ShieldRPG.Models.CenterLabRequest>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View1</title>
+</head>
+<body>
+
+    <ul class="lab-tests">
+        <li>
+            <a onclick="showInPopup('@Url.Action("CenterLabTest", "Main", Context.Request.Scheme)', 'Запрос в центральную лабораторию')"
+               class="btn btn-success">Запрос в центральную лабораторию</a>
+        </li>
+    </ul>
+
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Request)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Response)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Request)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Response)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

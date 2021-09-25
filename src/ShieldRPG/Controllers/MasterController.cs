@@ -15,7 +15,33 @@ namespace ShieldRPG.Controllers
     [Authorize(Roles = "master")]
     public class MasterController : Controller
     {
+        private readonly ILogger<MainController> _logger;
+        private readonly DataRepository _dataRepository;
+        private readonly CenterLabRequestsRepository _centerLabRepository;
+
+        public MasterController(ILogger<MainController> logger, DataRepository dataRepository, CenterLabRequestsRepository centerLabRepository)
+        {
+            _logger = logger;
+            _dataRepository = dataRepository;
+            _centerLabRepository = centerLabRepository;
+        }
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        public IActionResult CenterLab()
+        {
+            return View(_centerLabRepository.GetRequests());
+        }
+
+        public IActionResult EditUser()
+        {
+            return View();
+        }
+
+        public IActionResult EditDb()
         {
             return View();
         }

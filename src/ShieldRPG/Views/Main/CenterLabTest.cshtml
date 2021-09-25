@@ -1,0 +1,28 @@
+﻿@model ShieldRPG.Models.CenterLabRequest
+
+@{
+    ViewData["Title"] = "Анализ на токсины";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CenterLabRequest">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Request" class="control-label"></label>
+                <input asp-for="Request" class="form-control" />
+                <span asp-validation-for="Request" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Запрос" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
