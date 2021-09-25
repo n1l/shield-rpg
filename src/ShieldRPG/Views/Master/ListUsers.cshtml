@@ -1,19 +1,17 @@
-﻿@model IEnumerable<ShieldRPG.Models.CenterLabRequest>
+﻿@model IEnumerable<ShieldRPG.Repositories.UserRecord>
 
 @{
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 }
-
 
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Запросы на регионалку</title>
+    <title>Список пользователей</title>
 </head>
 <body>
-
     <br />
     <table class="table">
         <thead>
@@ -22,11 +20,10 @@
                     @Html.DisplayNameFor(model => model.UserName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Request)
+                    @Html.DisplayNameFor(model => model.Login)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Response)
-                </th>
+                    @Html.DisplayNameFor(model => model.Password)
                 <th></th>
             </tr>
         </thead>
@@ -38,13 +35,10 @@
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Request)
+                        @Html.DisplayFor(modelItem => item.Login)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Response)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "EditCenterLabRequest", new { id = item.Id })
+                        @Html.ActionLink("Edit", "EditUser", new { login = item.Login })
                     </td>
                 </tr>
             }

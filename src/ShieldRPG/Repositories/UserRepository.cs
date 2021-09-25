@@ -9,8 +9,8 @@ namespace ShieldRPG.Repositories
 {
     public class UserRepository
     {
-        private Dictionary<(string, string), UserRecord> _userRecords
-            = new Dictionary<(string, string), UserRecord>();
+        private Dictionary<string, UserRecord> _userRecords
+            = new Dictionary<string, UserRecord>();
 
         public UserRepository()
         {
@@ -18,14 +18,40 @@ namespace ShieldRPG.Repositories
             UserRecord[] records = JsonConvert.DeserializeObject<UserRecord[]>(json);
             foreach (UserRecord record in records)
             {
-                _userRecords.Add((record.Login, record.Password), record);
+                _userRecords.Add(record.Login, record);
             }
         }
 
         public UserRecord GetUser(string login, string password)
         {
-            _userRecords.TryGetValue((login, password), out UserRecord user);
+            bool found = _userRecords.TryGetValue(login, out UserRecord user);
+            if (found && password == user.Password)
+            {
+                return user;
+            }
+
+            return null;
+        }
+
+        public List<UserRecord> GetUsers()
+        {
+            return _userRecords.Values.ToList();
+        }
+
+        public UserRecord GetUserDataByLogin(string login)
+        {
+            _userRecords.TryGetValue(login, out UserRecord user);
             return user;
+        }
+
+        public void UpdateUserData(UserRecord userRecord)
+        {
+            if(!_userRecords.ContainsKey(userRecord.Login))
+            {
+                return;
+            }
+
+            _userRecords[userRecord.Login] = userRecord;
         }
     }
 }

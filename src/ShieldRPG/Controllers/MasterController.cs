@@ -17,12 +17,18 @@ namespace ShieldRPG.Controllers
     {
         private readonly ILogger<MainController> _logger;
         private readonly DataRepository _dataRepository;
+        private readonly UserRepository _userRepository;
         private readonly CenterLabRequestsRepository _centerLabRepository;
 
-        public MasterController(ILogger<MainController> logger, DataRepository dataRepository, CenterLabRequestsRepository centerLabRepository)
+        public MasterController(
+            ILogger<MainController> logger,
+            DataRepository dataRepository,
+            UserRepository userRepository,
+            CenterLabRequestsRepository centerLabRepository)
         {
             _logger = logger;
             _dataRepository = dataRepository;
+            _userRepository = userRepository;
             _centerLabRepository = centerLabRepository;
         }
 
@@ -48,14 +54,21 @@ namespace ShieldRPG.Controllers
             return RedirectToAction("CenterLab");
         }
 
-        public IActionResult EditUsers()
+        public IActionResult ListUsers()
         {
-            return View();
+            return View(_userRepository.GetUsers());
         }
 
-        public IActionResult EditDb()
+        public IActionResult EditUser(string login)
         {
-            return View();
+            return View(_userRepository.GetUserDataByLogin(login));
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(UserRecord userRecord)
+        {
+            _userRepository.UpdateUserData(userRecord);
+            return RedirectToAction("ListUsers");
         }
     }
 }

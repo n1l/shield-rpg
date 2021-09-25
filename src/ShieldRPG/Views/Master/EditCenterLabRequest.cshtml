@@ -9,11 +9,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>EditCenterLabRequest</title>
+    <title>Запрос на регионалку</title>
 </head>
 <body>
 
-    <h4>CenterLabRequest</h4>
+    <h4>Запрос на регионалку от @Model.UserName</h4>
     <hr />
 
     @using (Html.BeginForm("EditCenterLabRequest", "Master", FormMethod.Post))
@@ -24,24 +24,7 @@
             <div class="col-md-4">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-                <br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-                <br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Request, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Request, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
+                    <p class="align-content-start">@Model.Request</p>
                 </div>
                 <br />
                 <div class="form-group">
@@ -52,7 +35,7 @@
                 </div>
                 <br />
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="Сохранить" class="btn btn-primary" />
                 </div>
             </div>
         </div>

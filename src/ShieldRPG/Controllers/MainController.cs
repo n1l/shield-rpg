@@ -31,16 +31,19 @@ namespace ShieldRPG.Controllers
             return View();
         }
 
+        [Authorize(Roles = "medlab")]
         public IActionResult MedLab()
         {
             return View();
         }
 
+        [Authorize(Roles = "chemlab")]
         public IActionResult ChemLab()
         {
             return View();
         }
 
+        [Authorize(Roles = "techlab")]
         public IActionResult TechLab()
         {
             return View();
@@ -52,6 +55,7 @@ namespace ShieldRPG.Controllers
             return View(_centerLabRepository.GetRequests(principal.Identity.Name));
         }
 
+        [Authorize(Roles = "shielddb")]
         public IActionResult ShieldDb()
         {
             return View();
@@ -71,6 +75,7 @@ namespace ShieldRPG.Controllers
 
         /*------------------------------ MedLab*/
 
+        [Authorize(Roles = "medlab")]
         [HttpPost]
         public IActionResult DnaRequest(DnaRequest dnaRequest)
         {
@@ -84,6 +89,7 @@ namespace ShieldRPG.Controllers
             return View("ResultView", new TestResponse { ResponseText = message });
         }
 
+        [Authorize(Roles = "medlab")]
         [HttpPost]
         public IActionResult ToxinsRequest(ToxinsRequest toxinsRequest)
         {
@@ -97,6 +103,7 @@ namespace ShieldRPG.Controllers
             return View("ResultView", new TestResponse { ResponseText = message });
         }
 
+        [Authorize(Roles = "medlab")]
         [HttpPost]
         public IActionResult InfectRequest(InfectRequest infectRequest)
         {
@@ -110,6 +117,7 @@ namespace ShieldRPG.Controllers
             return View("ResultView", new TestResponse { ResponseText = message });
         }
 
+        [Authorize(Roles = "medlab")]
         [HttpPost]
         public IActionResult MrtRequest(MrtRequest mrtRequest)
         {
@@ -125,6 +133,7 @@ namespace ShieldRPG.Controllers
 
         /*------------------------------ ChemLab*/
 
+        [Authorize(Roles = "chemlab")]
         [HttpPost]
         public IActionResult SubstanceRequest(SubstanceRequest substanceRequest)
         {
@@ -140,6 +149,7 @@ namespace ShieldRPG.Controllers
 
         /*------------------------------ TechLab */
 
+        [Authorize(Roles = "techlab")]
         [HttpPost]
         public IActionResult ScanRequest(ScanRequest scanRequest)
         {
@@ -153,6 +163,7 @@ namespace ShieldRPG.Controllers
             return View("ResultView", new TestResponse { ResponseText = message });
         }
 
+        [Authorize(Roles = "techlab")]
         [HttpPost]
         public IActionResult SpectrogramRequest(SpectrogramRequest spectrogramRequest)
         {
@@ -168,6 +179,7 @@ namespace ShieldRPG.Controllers
 
         /*------------------------------ ShieldDb */
 
+        [Authorize(Roles = "shielddb")]
         [HttpPost]
         public IActionResult PersonalDataRequest(PersonalDataRequest personalDataRequest)
         {
@@ -181,6 +193,7 @@ namespace ShieldRPG.Controllers
             return View("ResultView", new TestResponse { ResponseText = message });
         }
 
+        [Authorize(Roles = "shielddb")]
         [HttpPost]
         public IActionResult OperationsRequest(OperationsRequest operationsRequest)
         {
@@ -194,6 +207,7 @@ namespace ShieldRPG.Controllers
             return View("ResultView", new TestResponse { ResponseText = message });
         }
 
+        [Authorize(Roles = "shielddb")]
         [HttpPost]
         public IActionResult ScienceRequest(ScienceRequest scienceRequest)
         {
