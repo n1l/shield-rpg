@@ -16,18 +16,15 @@ namespace ShieldRPG.Controllers
     public class MasterController : Controller
     {
         private readonly ILogger<MainController> _logger;
-        private readonly DataRepository _dataRepository;
         private readonly UserRepository _userRepository;
         private readonly CenterLabRequestsRepository _centerLabRepository;
 
         public MasterController(
             ILogger<MainController> logger,
-            DataRepository dataRepository,
             UserRepository userRepository,
             CenterLabRequestsRepository centerLabRepository)
         {
             _logger = logger;
-            _dataRepository = dataRepository;
             _userRepository = userRepository;
             _centerLabRepository = centerLabRepository;
         }

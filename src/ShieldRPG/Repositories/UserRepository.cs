@@ -35,7 +35,7 @@ namespace ShieldRPG.Repositories
 
         public List<UserRecord> GetUsers()
         {
-            return _userRecords.Values.ToList();
+            return _userRecords.Values.OrderBy(user => user.UserName).ToList();
         }
 
         public UserRecord GetUserDataByLogin(string login)
