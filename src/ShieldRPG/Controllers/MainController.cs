@@ -78,7 +78,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetDnaResultFor(dnaRequest.BloodCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetDnaResultFor(dnaRequest?.BloodCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -91,7 +91,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetToxinResultFor(toxinsRequest.ToxinsCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetToxinResultFor(toxinsRequest?.ToxinsCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -104,7 +104,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetInfectResultFor(infectRequest.InfectCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetInfectResultFor(infectRequest?.InfectCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -117,7 +117,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetMrtResultFor(mrtRequest.MrtCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetMrtResultFor(mrtRequest?.MrtCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -132,7 +132,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetSubstancResultFor(substanceRequest.SubstanceCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetSubstancResultFor(substanceRequest?.SubstanceCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -147,7 +147,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetScanResultFor(scanRequest.ScanCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetScanResultFor(scanRequest?.ScanCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -160,7 +160,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetScanResultFor(spectrogramRequest.SpectrogramCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetScanResultFor(spectrogramRequest?.SpectrogramCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -175,7 +175,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetScanResultFor(personalDataRequest.PersonalDataCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetScanResultFor(personalDataRequest?.PersonalDataCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -188,7 +188,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetScanResultFor(operationsRequest.OperationsCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetScanResultFor(operationsRequest?.OperationsCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -201,7 +201,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetScanResultFor(scienceRequest.ScientCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetScanResultFor(scienceRequest?.ScientCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
@@ -212,6 +212,8 @@ namespace ShieldRPG.Controllers
         [HttpPost]
         public IActionResult CenterLabRequest(CenterLabRequest centerLabRequest)
         {
+            if (centerLabRequest == null) { return RedirectToAction("CenterLab"); }
+
             ClaimsPrincipal principal = HttpContext.User;
             centerLabRequest.UserName = principal.Identity.Name;
             centerLabRequest.Id = Guid.NewGuid();

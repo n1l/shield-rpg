@@ -60,9 +60,13 @@ namespace ShieldRPG.Repositories
 
         private (bool success, string message) GetDataRecord(string code, int access, string requestType)
         {
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                return (false, $"Не указан запрос. Записей не обнаружено.");
+            }
             if (!_dataRecords.ContainsKey(code))
             {
-                return (false, $"Записей по коду: '{code}' не обнаружено");
+                return (false, $"Записей по коду: '{code}' не обнаружено.");
             }
 
             foreach (var record in _dataRecords[code])
@@ -78,7 +82,7 @@ namespace ShieldRPG.Repositories
                 }
             }
 
-            return (false, $"Записей по коду: '{code}' не обнаружено");
+            return (false, $"Записей по коду: '{code}' не обнаружено.");
         }
     }
 }
