@@ -8,6 +8,11 @@ namespace ShieldRPG.Models
 {
     public class CenterLabRequest
     {
+        public Guid Id { get; set; }
+
+        [DisplayName("Пользователь")]
+        public string UserName { get; set; }
+
         [DisplayName("Запрос")]
         public string Request { get; set; }
 

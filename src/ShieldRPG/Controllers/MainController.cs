@@ -57,19 +57,26 @@ namespace ShieldRPG.Controllers
             return View();
         }
 
+        public IActionResult CenterLabTest()
+        {
+            return View();
+        }
+
         /*------------------------------ */
 
-        public IActionResult MedTest(string testId)
+        public IActionResult ProcessRequest(string requestType)
         {
-            return View(testId);
+            return View(requestType);
         }
+
+        /*------------------------------ MedLab*/
 
         [HttpPost]
         public IActionResult DnaRequest(DnaRequest dnaRequest)
         {
             ClaimsPrincipal principal = HttpContext.User;
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
-                claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/access");
+                claim.Type == ShieldRpgClaimTypes.Access);
 
             (bool success, string message) = _dataRepository.GetDnaResultFor(dnaRequest.BloodCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
@@ -80,39 +87,135 @@ namespace ShieldRPG.Controllers
         [HttpPost]
         public IActionResult ToxinsRequest(ToxinsRequest toxinsRequest)
         {
-            return View();
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetToxinResultFor(toxinsRequest.ToxinsCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
         }
 
         [HttpPost]
         public IActionResult InfectRequest(InfectRequest infectRequest)
         {
-            return View();
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetInfectResultFor(infectRequest.InfectCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
         }
+
+        [HttpPost]
+        public IActionResult MrtRequest(MrtRequest mrtRequest)
+        {
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetMrtResultFor(mrtRequest.MrtCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
+        }
+
+        /*------------------------------ ChemLab*/
 
         [HttpPost]
         public IActionResult SubstanceRequest(SubstanceRequest substanceRequest)
         {
-            return View();
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetSubstancResultFor(substanceRequest.SubstanceCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
+        }
+
+        /*------------------------------ TechLab */
+
+        [HttpPost]
+        public IActionResult ScanRequest(ScanRequest scanRequest)
+        {
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetScanResultFor(scanRequest.ScanCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
         }
 
         [HttpPost]
-        public IActionResult MrtRequest(MrtRequest substanceRequest)
+        public IActionResult SpectrogramRequest(SpectrogramRequest spectrogramRequest)
         {
-            return View();
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetScanResultFor(spectrogramRequest.SpectrogramCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
         }
 
-        /*------------------------------ */
+        /*------------------------------ ShieldDb */
 
-        public IActionResult CenterLabTest()
+        [HttpPost]
+        public IActionResult PersonalDataRequest(PersonalDataRequest personalDataRequest)
         {
-            return View("CenterLabTest");
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetScanResultFor(personalDataRequest.PersonalDataCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
         }
+
+        [HttpPost]
+        public IActionResult OperationsRequest(OperationsRequest operationsRequest)
+        {
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetScanResultFor(operationsRequest.OperationsCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
+        }
+
+        [HttpPost]
+        public IActionResult ScienceRequest(ScienceRequest scienceRequest)
+        {
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetScanResultFor(scienceRequest.ScientCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
+        }
+
+        /*------------------------------ CenterLab */
 
         [HttpPost]
         public IActionResult CenterLabRequest(CenterLabRequest centerLabRequest)
         {
             ClaimsPrincipal principal = HttpContext.User;
-            _centerLabRepository.AddRequest(principal.Identity.Name, centerLabRequest);
+            centerLabRequest.UserName = principal.Identity.Name;
+            centerLabRequest.Id = Guid.NewGuid();
+            _centerLabRepository.AddRequest(centerLabRequest);
             return RedirectToAction("CenterLab");
         }
 

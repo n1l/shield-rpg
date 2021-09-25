@@ -8,8 +8,8 @@ namespace ShieldRPG.Repositories
 {
     public class CenterLabRequestsRepository
     {
-        private readonly Dictionary<string, List<CenterLabRequest>> _requestsToCenterLab
-            = new Dictionary<string, List<CenterLabRequest>>();
+        private readonly Dictionary<Guid, CenterLabRequest> _requestsToCenterLab
+            = new Dictionary<Guid, CenterLabRequest>();
 
         public List<CenterLabRequest> GetRequests(string userName = null)
         {
@@ -18,19 +18,16 @@ namespace ShieldRPG.Repositories
             {
                 foreach (var requests in _requestsToCenterLab)
                 {
-                    foreach (var request in requests.Value)
-                    {
-                        requestList.Add(request);
-                    }
+                    requestList.Add(requests.Value);
                 }
             }
             else
             {
                 foreach (var requests in _requestsToCenterLab)
                 {
-                    if (requests.Key == userName)
+                    if (requests.Value.UserName == userName)
                     {
-                        return requests.Value;
+                        requestList.Add(requests.Value);
                     }
                 }
             }
@@ -38,15 +35,21 @@ namespace ShieldRPG.Repositories
             return requestList;
         }
 
-        public void AddRequest(string userName, CenterLabRequest request)
+        public CenterLabRequest GetRequestById(Guid id)
         {
-            if(_requestsToCenterLab.ContainsKey(userName))
+            _requestsToCenterLab.TryGetValue(id, out CenterLabRequest request);
+            return request;
+        }
+
+        public void AddRequest(CenterLabRequest request)
+        {
+            if (!_requestsToCenterLab.ContainsKey(request.Id))
             {
-                _requestsToCenterLab[userName].Add(request);
+                _requestsToCenterLab.Add(request.Id, request);
             }
             else
             {
-                _requestsToCenterLab.Add(userName, new List<CenterLabRequest> { request });
+                _requestsToCenterLab[request.Id] = request;
             }
         }
     }

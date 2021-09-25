@@ -1,1 +1,495 @@
-﻿
+﻿[
+  {
+    "userName": "Кристофер Пауэрс",
+    "login": "kpowers",
+    "password": "wA2NyS",
+    "access": 8,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Каролина Хендерсон",
+    "login": "khanderson",
+    "password": "jDmYrg",
+    "access": 5,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Фил Колсон",
+    "login": "pkolson",
+    "password": "sxgARs",
+    "access": 8,
+    "roles": [
+      "shielddb",
+      "master"
+    ]
+  },
+  {
+    "userName": "Бобби Морс",
+    "login": "bmors",
+    "password": "dHke83",
+    "access": 6,
+    "roles": [
+      "shielddb",
+      "master"
+    ]
+  },
+  {
+    "userName": "Мелинда Мэй",
+    "login": "mmay",
+    "password": "kRhbEw",
+    "access": 7,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Лео Фитц",
+    "login": "lfitz",
+    "password": "qcYhUg",
+    "access": 5,
+    "roles": [
+      "techlab",
+      "shielddb",
+      "master"
+    ]
+  },
+  {
+    "userName": "Джемма Симмонс",
+    "login": "lfitz",
+    "password": "C7RrQw",
+    "access": 5,
+    "roles": [
+      "medlab",
+      "chemlab",
+      "shielddb",
+      "master"
+    ]
+  },
+  {
+    "userName": "Отто Шильдкнехт",
+    "login": "oshieldknt",
+    "password": "AmQUch",
+    "access": 5,
+    "roles": [
+      "medlab",
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Линда Аренберг",
+    "login": "larenberg",
+    "password": "Cuerv4",
+    "access": 6,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Джек Уайт",
+    "login": "jwhite",
+    "password": "YyeTZe",
+    "access": 6,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Лэнс Хантер",
+    "login": "lhunter",
+    "password": "6yYE3b",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Agent X",
+    "login": "agent_x",
+    "password": "hJBMwU",
+    "access": 10,
+    "hackerrank": 3,
+    "roles": [
+      "darknet",
+      "master"
+    ]
+  },
+  {
+    "userName": "Амира аль-Рашид",
+    "login": "aalrashid",
+    "password": "Bbu2Vd",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Фрэнсис Пауэрс",
+    "login": "fpowers",
+    "password": "bBwDhT",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Ивон Бастьен",
+    "login": "ibastien",
+    "password": "xZpjYP",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Джулиан Бартош",
+    "login": "jbartosh",
+    "password": "yYdZFH",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Клайд Смит",
+    "login": "ksmith",
+    "password": "HwMXXD",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Тики Робинсон",
+    "login": "trobinson",
+    "password": "j7ZM6S",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Вивиан Гамильтон",
+    "login": "vgamilton",
+    "password": "eFrsXv",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Алекса Барлоу",
+    "login": "abralow",
+    "password": "tRY3KB",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Антонио Сарто",
+    "login": "asarato",
+    "password": "DYa9hq",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Адам Джефферсон",
+    "login": "ajefferson",
+    "password": "mndCaP",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Бен Мару",
+    "login": "bmaru",
+    "password": "Uj8HXS",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Камилла Фернандес",
+    "login": "kfernandes",
+    "password": "y5BEEF",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Тед Томпсон",
+    "login": "ttompson",
+    "password": "hYGpNr",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Рикардо Ортис",
+    "login": "rortis",
+    "password": "EVGyST",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Лотта Олссон",
+    "login": "lollson",
+    "password": "YJce5r",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Брайан Аддерли",
+    "login": "baddreli",
+    "password": "ZPf5V3",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Онур ибн Хуссейн",
+    "login": "oihussn",
+    "password": "EhcARD",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Нейтан Белл",
+    "login": "nbell",
+    "password": "bNTysh",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "chemlab"
+    ]
+  },
+  {
+    "userName": "Криста Хофманн",
+    "login": "khoffman",
+    "password": "ZnavXc",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "chemlab"
+    ]
+  },
+  {
+    "userName": "Шапур Филаби",
+    "login": "sfilabi",
+    "password": "BhH3gS",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "chemlab"
+    ]
+  },
+  {
+    "userName": "Дениза Дерси",
+    "login": "ddersy",
+    "password": "qNEjpm",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "chemlab"
+    ]
+  },
+  {
+    "userName": "Виктория Кинг",
+    "login": "vking",
+    "password": "SbxDVW",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "techlab"
+    ]
+  },
+  {
+    "userName": "Луис Мендрейк",
+    "login": "lmendrake",
+    "password": "byTJ4Y",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "techlab"
+    ]
+  },
+  {
+    "userName": "Валто Ярвинен",
+    "login": "vyarvinen",
+    "password": "YknXTX",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "techlab"
+    ]
+  },
+  {
+    "userName": "Кевин о'Дейли",
+    "login": "kdaily",
+    "password": "BnMeGD",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "techlab"
+    ]
+  },
+  {
+    "userName": "Энн О'Рейли",
+    "login": "araily",
+    "password": "AbCg7z",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Энн О'Рейли",
+    "login": "nerf",
+    "password": "Tyz0n",
+    "access": 10,
+    "hackerrank": 2,
+    "roles": [
+      "darknet"
+    ]
+  },
+  {
+    "userName": "Рэд Блумфилд",
+    "login": "rblumfield",
+    "password": "WRTpy4",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Рэд Блумфилд",
+    "login": "xrex",
+    "password": "M3M0r1es",
+    "access": 10,
+    "hackerrank": 1,
+    "roles": [
+      "darknet"
+    ]
+  },
+  {
+    "userName": "Акира Тамура",
+    "login": "atamaura",
+    "password": "uXjVRF",
+    "access": 3,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Акира Тамура",
+    "login": "0d4",
+    "password": "N4buhid0",
+    "access": 10,
+    "hackerrank": 1,
+    "roles": [
+      "darknet"
+    ]
+  },
+  {
+    "userName": "Хелен Беркли",
+    "login": "hberkly",
+    "password": "GkFJAE",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "medlab"
+    ]
+  },
+  {
+    "userName": "Лоренцо Кантарелла",
+    "login": "lkantarella",
+    "password": "eBvKJQ",
+    "access": 3,
+    "roles": [
+      "shielddb",
+      "medlab"
+    ]
+  },
+  {
+    "userName": "Генри Стоун",
+    "login": "gstone",
+    "password": "tSu2ea",
+    "access": 6,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Николас Уолкер",
+    "login": "nwalker",
+    "password": "ynndWr",
+    "access": 4,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Брэдли Фишер",
+    "login": "bfisher",
+    "password": "HbSUYZ",
+    "access": 6,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Брэдли Фишер",
+    "login": "nox",
+    "password": "Term0",
+    "access": 10,
+    "hackerrank": 1,
+    "roles": [
+      "darknet"
+    ]
+  },
+  {
+    "userName": "Джудит Вейцман",
+    "login": "jweizman",
+    "password": "suKBKM",
+    "access": 7,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Грейс Ши",
+    "login": "gshea",
+    "password": "VaAkRd",
+    "access": 5,
+    "roles": [
+      "shielddb"
+    ]
+  },
+  {
+    "userName": "Грейс Ши",
+    "login": "lolly",
+    "password": "60osteR",
+    "access": 10,
+    "hackerrank": 2,
+    "roles": [
+      "darknet"
+    ]
+  }
+]

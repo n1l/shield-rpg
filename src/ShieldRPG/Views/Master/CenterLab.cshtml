@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShieldRPG.Models.CenterLabRequest>
+@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View1</title>
+</head>
+<body>
+
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Request)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Response)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Request)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Response)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCenterLabRequest", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

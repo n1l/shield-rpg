@@ -3,3 +3,25 @@
 *@
 @{
 }
+
+
+<ul class="lab-tests">
+    <li>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "PersonalDataTest" }, Context.Request.Scheme)', 'Личные дела агентов')"
+               class="btn btn-success">Личные дела агентов</a>
+        </p>
+    </li>
+    <li>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "OperationsTest" }, Context.Request.Scheme)', 'Операции')"
+               class="btn btn-success">Операции</a>
+        </p>
+    </li>
+    <li>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "ScienceTest" }, Context.Request.Scheme)','Научно-исследовательские материалы')"
+               class="btn btn-success">Научно-исследовательские материалы</a>
+        </p>
+    </li>
+</ul>

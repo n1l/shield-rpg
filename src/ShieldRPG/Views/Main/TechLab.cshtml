@@ -3,3 +3,19 @@
 *@
 @{
 }
+
+
+<ul class="lab-tests">
+    <li>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "ScanTest" }, Context.Request.Scheme)', 'Cканирование объекта')"
+               class="btn btn-success">Cканирование объекта</a>
+        </p>
+    </li>
+    <li>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "SpectrogramTest" }, Context.Request.Scheme)', 'Cпектрогаф (химический состав)')"
+               class="btn btn-success">Cпектрогаф (химический состав)</a>
+        </p>
+    </li>
+</ul>

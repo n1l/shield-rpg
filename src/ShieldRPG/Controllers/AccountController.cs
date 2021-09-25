@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using ShieldRPG.Models;
+using ShieldRPG.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -11,15 +16,24 @@ namespace ShieldRPG.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ILogger<MainController> _logger;
+        private readonly UserRepository _userRepository;
+
+        public AccountController(ILogger<MainController> logger, UserRepository userRepository)
+        {
+            _logger = logger;
+            _userRepository = userRepository;
+        }
+
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(string userName, string password)
+        public IActionResult Login(string login, string password)
         {
-            if (!string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
+            if (!string.IsNullOrEmpty(login) && string.IsNullOrEmpty(password))
             {
                 return RedirectToAction("Login");
             }
@@ -29,28 +43,20 @@ namespace ShieldRPG.Controllers
             ClaimsIdentity identity = null;
             bool isAuthenticated = false;
 
-            if (userName == "anisha" && password == "pwd123")
+            UserRecord userFromDb = _userRepository.GetUser(login, password);
+            if (userFromDb != null)
             {
+                List<Claim> claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, userFromDb.UserName));
+                claims.Add(new Claim(ShieldRpgClaimTypes.Access, userFromDb.Access.ToString()));
+                foreach (string role in userFromDb.Roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
 
-                //Create the identity for the user  
-                identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, userName),
-                    new Claim(ClaimTypes.Role, "master"),
-                    new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/access", 10.ToString())
-                }, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                isAuthenticated = true;
-            }
-
-            if (userName == "user" && password == "pwd123")
-            {
-
-                //Create the identity for the user  
-                identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name, userName),
-                    new Claim(ClaimTypes.Role, "player"),
-                    new Claim("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/access", 10.ToString())
-                }, CookieAuthenticationDefaults.AuthenticationScheme);
+                identity = new ClaimsIdentity(claims,
+                    CookieAuthenticationDefaults.AuthenticationScheme);
 
                 isAuthenticated = true;
             }

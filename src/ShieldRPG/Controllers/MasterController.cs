@@ -36,7 +36,19 @@ namespace ShieldRPG.Controllers
             return View(_centerLabRepository.GetRequests());
         }
 
-        public IActionResult EditUser()
+        public IActionResult EditCenterLabRequest(Guid id)
+        {
+            return View(_centerLabRepository.GetRequestById(id));
+        }
+
+        [HttpPost]
+        public IActionResult EditCenterLabRequest(CenterLabRequest centerLabRequest)
+        {
+            _centerLabRepository.AddRequest(centerLabRequest);
+            return RedirectToAction("CenterLab");
+        }
+
+        public IActionResult EditUsers()
         {
             return View();
         }

@@ -7,23 +7,27 @@
 
 <ul class="lab-tests">
     <li>
-        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "DnaTest" }, Context.Request.Scheme)', 'Анализ ДНК')"
-           class="btn btn-success">Анализ ДНК</a>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "DnaTest" }, Context.Request.Scheme)', 'Анализ ДНК')"
+               class="btn btn-success">Анализ ДНК</a>
+        </p>
     </li>
     <li>
-        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "ToxinsTest" }, Context.Request.Scheme)', 'Анализ на токсины')"
-           class="btn btn-success">Анализ на токсины</a>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "ToxinsTest" }, Context.Request.Scheme)', 'Анализ образца (крови/костного мозга) на токсины, тяж. металлы, отравляющие вещества')"
+               class="btn btn-success">Анализ на токсины</a>
+        </p>
     </li>
     <li>
-        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "InfectTest" }, Context.Request.Scheme)','Анализ на наличие инфекций')"
-           class="btn btn-success">Анализ на наличие инфекций</a>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "InfectTest" }, Context.Request.Scheme)','Анализ образца (крови/костного мозга) на наличие вирусов/инфекций')"
+               class="btn btn-success">Анализ на наличие инфекций</a>
+        </p>
     </li>
     <li>
-        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "SubstanceTest" }, Context.Request.Scheme)', 'Анализ структуры вещества')"
-           class="btn btn-success">Анализ структуры вещества</a>
-    </li>
-    <li>
-        <a onclick="showInPopup('@Url.Action("MedTest", "Main", new { testId = "MrtTest" }, Context.Request.Scheme)', 'Мрт, КТ, рентген тела')"
-           class="btn btn-success">Мрт, КТ, рентген тела</a>
+        <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "MrtTest" }, Context.Request.Scheme)', 'Рентген тела')"
+               class="btn btn-success">Рентген тела</a>
+        </p>
     </li>
 </ul>
