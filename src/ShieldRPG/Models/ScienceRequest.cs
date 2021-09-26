@@ -9,6 +9,6 @@ namespace ShieldRPG.Models
     public class ScienceRequest
     {
         [DisplayName("Код науч исследований")]
-        public string ScientCode { get; set; }
+        public string ScienceCode { get; set; }
     }
 }

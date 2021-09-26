@@ -22,14 +22,34 @@ namespace ShieldRPG.Repositories
             }
         }
 
-        public List<DataRecord> GetRecordList()
-            => _dataRecords.Values.ToList();
+        public List<DataRecord> GetRecordList(params string[] requestTypes)
+        {
+            HashSet<string> types = new HashSet<string>(requestTypes);
+            if (types.Count == 0)
+            {
+                return _dataRecords.Values.OrderBy(record => record.Code).ToList();
+            }
+
+            return _dataRecords.Values.Where(record => types.Contains(record.RequestType)).OrderBy(record => record.Code).ToList();
+        }
 
         public DataRecord GetRecordById(Guid id)
         {
             _dataRecords.TryGetValue(id, out DataRecord dataRecord);
 
             return dataRecord;
+        }
+
+        public void UpdateRecord(DataRecord record)
+        {
+            if (_dataRecords.ContainsKey(record.Id))
+            {
+                _dataRecords[record.Id] = record;
+            }
+            else
+            {
+                _dataRecords.Add(record.Id, record);
+            }
         }
 
         public (bool success, string message) GetDnaResultFor(string code, int access)
@@ -71,7 +91,7 @@ namespace ShieldRPG.Repositories
 
             foreach (var record in _dataRecords.Values)
             {
-                if (record.Code ==  code && record.Requests.Contains(requestType))
+                if (record.Code == code && record.RequestType == requestType)
                 {
                     if (record.Access > access)
                     {

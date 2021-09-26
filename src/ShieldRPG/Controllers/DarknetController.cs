@@ -38,7 +38,7 @@ namespace ShieldRPG.Controllers
         [Authorize(Roles = "darknet")]
         public IActionResult Index()
         {
-            return View(_dataRepository.GetRecordList());
+            return View(_dataRepository.GetRecordList("PersonalDataRequest", "OperationsRequest", "ScienceRequest"));
         }
 
         [Authorize(Roles = "darknet")]

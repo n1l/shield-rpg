@@ -13,7 +13,7 @@ namespace ShieldRPG.Repositories
 
         public string Text { get; set; }
 
-        public HashSet<string> Requests { get; set; }
+        public string RequestType { get; set; }
 
         public int Access { get; set; }
     }

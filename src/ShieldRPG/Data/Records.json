@@ -2,41 +2,31 @@
   {
     "Code": "H6D4I9",
     "text": "Кровь принадлежит человеку мужского пола, родственник Ника Фьюри.",
-    "requests": [
-      "DnaRequest"
-    ],
+    "requestType": "DnaRequest",
     "access": 3
   },
   {
     "Code": "H6D4I10",
     "text": "Анализ вещества выдает остаточное содержание токсинов инопланетного происхождения.",
-    "requests": [
-      "SpectometerRequest"
-    ],
+    "requestType": "SubstanceRequest",
     "access": 4
   },
   {
     "Code": "Ник Фьюри",
     "text": "https://docs.google.com/document/d/1MFECE2jLtujGkut9UcRfdDez3O8TzEGiRGeWUJu9C1E/edit?usp=sharing",
-    "requests": [
-      "ShieldDbRequest"
-    ],
+    "requestType": "PersonalDataRequest",
     "access": 10
   },
   {
     "Code": "Операция \"Сахара\"",
     "text": "Операция, проходившая 16.09.2010 года в пустыне \"Сахара\" по вызволению группы заложников.",
-    "requests": [
-      "ShieldDbRequest"
-    ],
+    "requestType": "OperationsRequest",
     "access": 6
   },
   {
     "Code": "К1Ф2",
     "text": "Образец реагирует на ультрафиолет таким образом, что это позволяет предположить его разумность.",
-    "requests": [
-      "TuringTestRequest"
-    ],
+    "requestType": "ScienceRequest",
     "access": 5
   }
 ]
