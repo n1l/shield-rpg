@@ -49,6 +49,7 @@ namespace ShieldRPG.Controllers
                 List<Claim> claims = new List<Claim>();
                 claims.Add(new Claim(ClaimTypes.Name, userFromDb.UserName));
                 claims.Add(new Claim(ShieldRpgClaimTypes.Access, userFromDb.Access.ToString()));
+                claims.Add(new Claim(ShieldRpgClaimTypes.Login, userFromDb.Login));
                 foreach (string role in userFromDb.Roles)
                 {
                     claims.Add(new Claim(ClaimTypes.Role, role));

@@ -25,10 +25,11 @@ namespace ShieldRPG
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<WordsRepository>();
+            services.AddSingleton<HackerRepository>();
             services.AddSingleton<UserRepository>();
             services.AddSingleton<DataRepository>();
             services.AddSingleton<CenterLabRequestsRepository>();
-            services.AddSingleton<UserRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddMvc();
         }

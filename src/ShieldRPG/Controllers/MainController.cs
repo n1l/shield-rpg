@@ -19,7 +19,10 @@ namespace ShieldRPG.Controllers
         private readonly DataRepository _dataRepository;
         private readonly CenterLabRequestsRepository _centerLabRepository;
 
-        public MainController(ILogger<MainController> logger, DataRepository dataRepository, CenterLabRequestsRepository centerLabRepository)
+        public MainController(
+            ILogger<MainController> logger,
+            DataRepository dataRepository,
+            CenterLabRequestsRepository centerLabRepository)
         {
             _logger = logger;
             _dataRepository = dataRepository;
