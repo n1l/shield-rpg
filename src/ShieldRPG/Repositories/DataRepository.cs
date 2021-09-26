@@ -9,7 +9,7 @@ namespace ShieldRPG.Repositories
 {
     public class DataRepository
     {
-        private Dictionary<string, List<DataRecord>> _dataRecords = new Dictionary<string, List<DataRecord>>();
+        private Dictionary<Guid, DataRecord> _dataRecords = new Dictionary<Guid, DataRecord>();
 
         public DataRepository()
         {
@@ -17,15 +17,19 @@ namespace ShieldRPG.Repositories
             DataRecord[] records = JsonConvert.DeserializeObject<DataRecord[]>(json);
             foreach (DataRecord record in records)
             {
-                if(_dataRecords.ContainsKey(record.Id))
-                {
-                    _dataRecords[record.Id].Add(record);
-                }
-                else
-                {
-                    _dataRecords.Add(record.Id, new List<DataRecord> { record });
-                }
+                record.Id = Guid.NewGuid();
+                _dataRecords.Add(record.Id, record);
             }
+        }
+
+        public List<DataRecord> GetRecordList()
+            => _dataRecords.Values.ToList();
+
+        public DataRecord GetRecordById(Guid id)
+        {
+            _dataRecords.TryGetValue(id, out DataRecord dataRecord);
+
+            return dataRecord;
         }
 
         public (bool success, string message) GetDnaResultFor(string code, int access)
@@ -64,14 +68,10 @@ namespace ShieldRPG.Repositories
             {
                 return (false, $"Не указан запрос. Записей не обнаружено.");
             }
-            if (!_dataRecords.ContainsKey(code))
-            {
-                return (false, $"Записей по коду: '{code}' не обнаружено.");
-            }
 
-            foreach (var record in _dataRecords[code])
+            foreach (var record in _dataRecords.Values)
             {
-                if (record.Requests.Contains(requestType))
+                if (record.Code ==  code && record.Requests.Contains(requestType))
                 {
                     if (record.Access > access)
                     {

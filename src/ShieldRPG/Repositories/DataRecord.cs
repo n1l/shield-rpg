@@ -7,7 +7,9 @@ namespace ShieldRPG.Repositories
 {
     public class DataRecord
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
+
+        public string Code { get; set; }
 
         public string Text { get; set; }
 

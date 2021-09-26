@@ -33,9 +33,6 @@
     <Content Update="wwwroot\img\monitorborder-off.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-    <Content Update="wwwroot\img\monitorborder.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
     <Content Update="wwwroot\sound\k1.ogg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>

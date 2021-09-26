@@ -13,7 +13,7 @@ var Count = 12;
 var Difficulty = 7;
 var DudLength = 8;
 var Sound = true;
-var InfoText = "ROBCO INDUSTRIES (TM) TERMALINK PROTOCOL<br />ENTER PASSWORD NOW";
+var InfoText = "BLOOMFIELD INDUSTRIES (TM) TERMALINK PROTOCOL<br />ENTER PASSWORD NOW";
 var Haikus = [
 	"Out of memory.<br />We wish to hold the whole sky,<br />But we never will.",
 	"Three things are certain:<br />Death, taxes, and lost data.<br />Guess which has occurred.",
@@ -61,7 +61,7 @@ var gchars =
 
 Start = function()
 {
-	$.get("darknet/GetAssesmentData", {
+	$.get("/darknet/GetAssesmentData", {
 		length: Difficulty,
 		count: Count
 	}, AttemptsDataCallback);
@@ -129,20 +129,11 @@ UpdateAttempts = function()
 
 TogglePower = function()
 {
-	if (Power == "on")
-	{
-		Power = "off";
-		$("#terminal-background-off").css("visibility", "visible");
-		$("#terminal").css("background-image", "url('img/bg-off.png')");
-		$("#terminal").html("");
-		if (Sound)
-			$("#poweroff")[0].play();
-	}
-	else
+	if (Power == "off")
 	{
 		Power = "on";
 		$("#terminal-background-off").css("visibility", "hidden");
-		$("#terminal").css("background-image", "url('img/bg.png')");
+		$("#terminal").css("background-image", "url('/img/bg.png')");
 		Initialize();
 	}
 }
@@ -385,7 +376,7 @@ HandleBraces = function(DudCap)
 
 Failure = function()
 {
-	$.get("darknet/AttemptFinished", {
+	$.get("/darknet/AttemptFinished", {
 		success: false
 	});
 
@@ -416,7 +407,7 @@ Failure = function()
 
 			var geometry = new THREE.SphereGeometry( 2, 10, 7 );
 			var material = new THREE.MeshBasicMaterial({
-			      color : 0x33dd88,
+				color: 0x33dd88,
 			      wireframe : true,
 			      wireframeLinewidth: 10
 			    });
@@ -436,11 +427,21 @@ Failure = function()
 	});
 }
 
+var Record = {};
+ProcessDataRecordCallback = function (Response) {
+	Record = JSON.parse(Response);
+}
+
 Success = function()
 {
-	$.get("darknet/AttemptFinished", {
+	$.get("/darknet/AttemptFinished", {
 		success: true
-	});
+	}, function (data) { });
+
+	var id = document.getElementById("Id").value;
+	$.get("/darknet/GetDataRecord", {
+		id: id,
+	}, ProcessDataRecordCallback);
 
 	UpdateOutput("Access granted.");
 
@@ -451,8 +452,17 @@ Success = function()
 		duration: 1000,
 		complete : function()
 		{
+			var str = "<div id='canvas'></div><div id='adminalert'><div id='msg' class='character-hover alert-text'>"
+				+ "<p>TERMINAL ACCESS GRANTED<p>"
+				+ "<p>" + Record.Code + "</p>"
+				+ "</div><br />"
+				+ "<div onClick=\"location.href=" + "'" + Record.Text + "'" + ";"
+				+ "return false;\" id='proceed' class='alert-text'>"
+				+ Record.Text + "</div></div>"
+
+
 			//$("#terminal").html("<div id='adminalert'>" + Haikus[ Math.floor( Math.random() * Haikus.length ) ].toUpperCase() + "</div>");
-			$("#terminal").html("<div id='canvas'></div><div id='adminalert'><div id='msg' class='character-hover alert-text'>TERMINAL ACCESS GRANTED</div><br /><div onClick=\"location.href = 'https://breakout.bernis-hideout.de/pip-boy';return false;\" id='proceed' class='alert-text'>PRESS HERE TO PROCEED</div></div>");
+			$("#terminal").html(str);
 
 			var container = $("#canvas");
 			var canvasWidth = container.width();

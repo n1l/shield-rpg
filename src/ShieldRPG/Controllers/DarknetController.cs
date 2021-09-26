@@ -38,16 +38,24 @@ namespace ShieldRPG.Controllers
         [Authorize(Roles = "darknet")]
         public IActionResult Index()
         {
-            return View();
+            return View(_dataRepository.GetRecordList());
+        }
+
+        [Authorize(Roles = "darknet")]
+        public IActionResult Terminal(Guid id)
+        {
+            return View(_dataRepository.GetRecordById(id));
         }
 
         [HttpGet]
-        public void AttemptFinished(bool success)
+        public IActionResult AttemptFinished(bool success)
         {
             ClaimsPrincipal principal = HttpContext.User;
             string login = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Login)?.Value;
             _hackerRepository.UpdateAttempt(login, success);
+
+            return Ok();
         }
 
         public IActionResult GetAssesmentData(int count, int length)
@@ -70,6 +78,13 @@ namespace ShieldRPG.Controllers
             };
 
             return Json(JsonConvert.SerializeObject(assesment));
+        }
+
+        public IActionResult GetDataRecord(Guid id)
+        {
+            var record = _dataRepository.GetRecordById(id);
+
+            return Json(JsonConvert.SerializeObject(record));
         }
     }
 }
