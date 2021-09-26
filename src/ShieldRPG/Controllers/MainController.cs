@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShieldRPG.Models;
@@ -243,7 +244,11 @@ namespace ShieldRPG.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var context = HttpContext.Features.Get<IExceptionHandlerFeature>();
+
+            return Problem(
+                detail: context.Error.StackTrace,
+                title: context.Error.Message);
         }
     }
 }
