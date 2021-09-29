@@ -50,7 +50,10 @@ namespace ShieldRPG.Controllers
         [HttpPost]
         public IActionResult EditCenterLabRequest(CenterLabRequest centerLabRequest)
         {
-            _centerLabRepository.AddRequest(centerLabRequest);
+            CenterLabRequest existing = _centerLabRepository.GetRequestById(centerLabRequest.Id);
+            if (existing == null) { return RedirectToAction("CenterLab"); }
+            existing.Response = centerLabRequest.Response;
+            _centerLabRepository.AddRequest(existing);
             return RedirectToAction("CenterLab");
         }
 
@@ -67,7 +70,11 @@ namespace ShieldRPG.Controllers
         [HttpPost]
         public IActionResult EditUser(UserRecord userRecord)
         {
-            _userRepository.UpdateUserData(userRecord);
+            UserRecord existing = _userRepository.GetUserDataByLogin(userRecord.Login);
+            if (existing == null) { return RedirectToAction("CenterLab"); }
+            existing.Access = userRecord.Access != 0 ? userRecord.Access : existing.Access;
+            existing.HackerRank = userRecord.HackerRank != 0 ? userRecord.HackerRank : existing.HackerRank;
+            _userRepository.UpdateUserData(existing);
             return RedirectToAction("ListUsers");
         }
 
