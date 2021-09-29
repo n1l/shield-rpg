@@ -9,6 +9,8 @@ namespace ShieldRPG.Repositories
 {
     public class UserRepository
     {
+        private static readonly object _lock = new object();
+
         private Dictionary<string, UserRecord> _userRecords
             = new Dictionary<string, UserRecord>();
 
@@ -49,6 +51,12 @@ namespace ShieldRPG.Repositories
             if(!_userRecords.ContainsKey(userRecord.Login))
             {
                 return;
+            }
+
+            var content = JsonConvert.SerializeObject(_userRecords.Values.ToArray());
+            lock (_lock)
+            {
+                File.WriteAllText(@"Data\Users.json", content);
             }
 
             _userRecords[userRecord.Login] = userRecord;

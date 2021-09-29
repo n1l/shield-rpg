@@ -9,6 +9,8 @@ namespace ShieldRPG.Repositories
 {
     public class DataRepository
     {
+        private static readonly object _lock = new object();
+
         private Dictionary<Guid, DataRecord> _dataRecords = new Dictionary<Guid, DataRecord>();
 
         public DataRepository()
@@ -49,6 +51,12 @@ namespace ShieldRPG.Repositories
             else
             {
                 _dataRecords.Add(record.Id, record);
+            }
+
+            var content  = JsonConvert.SerializeObject(_dataRecords.Values.ToArray());
+            lock (_lock)
+            {
+                File.WriteAllText(@"Data\Records.json", content);
             }
         }
 
