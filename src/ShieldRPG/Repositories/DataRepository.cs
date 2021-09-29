@@ -53,34 +53,37 @@ namespace ShieldRPG.Repositories
         }
 
         public (bool success, string message) GetDnaResultFor(string code, int access)
-            => GetDataRecord(code, access, "DnaRequest");
+            => GetDataRecord(code, access, "dna");
+
+        public (bool success, string message) GetMedcartResultFor(string code, int access)
+            => GetDataRecord(code, access, "medcart");
 
         public (bool success, string message) GetToxinResultFor(string code, int access)
-            => GetDataRecord(code, access, "ToxinsRequest");
+            => GetDataRecord(code, access, "tox");
 
         public (bool success, string message) GetInfectResultFor(string code, int access)
-            => GetDataRecord(code, access, "InfectRequest");
+            => GetDataRecord(code, access, "inft");
 
         public (bool success, string message) GetMrtResultFor(string code, int access)
-            => GetDataRecord(code, access, "MrtRequest");
+            => GetDataRecord(code, access, "mrt");
 
         public (bool success, string message) GetSubstancResultFor(string code, int access)
-            => GetDataRecord(code, access, "SubstanceRequest");
+            => GetDataRecord(code, access, "sbst");
 
         public (bool success, string message) GetScanResultFor(string code, int access)
-            => GetDataRecord(code, access, "ScanRequest");
+            => GetDataRecord(code, access, "scan");
 
         public (bool success, string message) GetSpectrogramResultFor(string code, int access)
-            => GetDataRecord(code, access, "SpectrogramRequest");
+            => GetDataRecord(code, access, "spgm");
 
         public (bool success, string message) GetPersonalDataResultFor(string code, int access)
-            => GetDataRecord(code, access, "PersonalDataRequest");
+            => GetDataRecord(code, access, "prd");
 
         public (bool success, string message) GetOperationsResultFor(string code, int access)
-            => GetDataRecord(code, access, "OperationsRequest");
+            => GetDataRecord(code, access, "ops");
 
         public (bool success, string message) GetScienceResultFor(string code, int access)
-            => GetDataRecord(code, access, "ScienceRequest");
+            => GetDataRecord(code, access, "sci");
 
         private (bool success, string message) GetDataRecord(string code, int access, string requestType)
         {

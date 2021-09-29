@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,7 +31,12 @@ namespace ShieldRPG
             services.AddSingleton<UserRepository>();
             services.AddSingleton<DataRepository>();
             services.AddSingleton<CenterLabRequestsRepository>();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options =>
+              {
+                  // add an access denied path in your AddCookie options
+                  options.AccessDeniedPath = "/access-denied";
+              });
             services.AddMvc();
         }
 
@@ -61,6 +67,14 @@ namespace ShieldRPG
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Main}/{action=Index}/{id?}");
+            });
+
+            app.UseStatusCodePages(async context =>
+            {
+                if (context.HttpContext.Response.StatusCode == 401)
+                {
+                    await context.HttpContext.Response.WriteAsync("Нет доступа.");
+                }
             });
         }
     }

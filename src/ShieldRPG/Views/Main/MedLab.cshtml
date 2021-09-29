@@ -14,6 +14,12 @@
     </li>
     <li>
         <p class="align-content-start">
+            <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "MedcartTest" }, Context.Request.Scheme)', 'Мед. карта')"
+               class="btn btn-success">Мед. карта</a>
+        </p>
+    </li>
+    <li>
+        <p class="align-content-start">
             <a onclick="showInPopup('@Url.Action("ProcessRequest", "Main", new { requestType = "ToxinsTest" }, Context.Request.Scheme)', 'Анализ образца (крови/костного мозга) на токсины, тяж. металлы, отравляющие вещества')"
                class="btn btn-success">Анализ на токсины</a>
         </p>

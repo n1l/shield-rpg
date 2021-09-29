@@ -95,6 +95,20 @@ namespace ShieldRPG.Controllers
 
         [Authorize(Roles = "medlab")]
         [HttpPost]
+        public IActionResult MedcartRequest(MedcartRequest dnaRequest)
+        {
+            ClaimsPrincipal principal = HttpContext.User;
+            var accessClaim = principal.Claims.FirstOrDefault(claim =>
+                claim.Type == ShieldRpgClaimTypes.Access);
+
+            (bool success, string message) = _dataRepository.GetMedcartResultFor(dnaRequest?.MedcartCode, int.Parse(accessClaim.Value));
+            ViewData["Title"] = success ? "OK" : "Fail";
+
+            return View("ResultView", new TestResponse { ResponseText = message });
+        }
+
+        [Authorize(Roles = "medlab")]
+        [HttpPost]
         public IActionResult ToxinsRequest(ToxinsRequest toxinsRequest)
         {
             ClaimsPrincipal principal = HttpContext.User;
@@ -249,6 +263,13 @@ namespace ShieldRPG.Controllers
             return Problem(
                 detail: context.Error.StackTrace,
                 title: context.Error.Message);
+        }
+
+        [Route("access-denied")]
+        public IActionResult ForbiddenBlaBla()
+        {
+            // any status code you wanted. e.g => 403
+            return View("AccessDenied");
         }
     }
 }

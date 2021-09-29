@@ -13,7 +13,12 @@ namespace ShieldRPG.Repositories
 
         public string Text { get; set; }
 
-        public string RequestType { get; set; }
+        private string _requestType;
+        public string RequestType
+        {
+            get { return _requestType; }
+            set { _requestType = value?.Trim().ToLower(); }
+        }
 
         public int Access { get; set; }
     }
