@@ -189,7 +189,7 @@ namespace ShieldRPG.Controllers
             var accessClaim = principal.Claims.FirstOrDefault(claim =>
                 claim.Type == ShieldRpgClaimTypes.Access);
 
-            (bool success, string message) = _dataRepository.GetScanResultFor(spectrogramRequest?.SpectrogramCode, int.Parse(accessClaim.Value));
+            (bool success, string message) = _dataRepository.GetSpectrogramResultFor(spectrogramRequest?.SpectrogramCode, int.Parse(accessClaim.Value));
             ViewData["Title"] = success ? "OK" : "Fail";
 
             return View("ResultView", new TestResponse { ResponseText = message });
