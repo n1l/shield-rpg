@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShieldRPG.Repositories.DataRecord>
+﻿@model IEnumerable<ShieldRPG.Repositories.DataRecordView>
 
 @{
     Layout = "~/Views/Shared/_DarknetLayout.cshtml";
@@ -19,6 +19,9 @@
                     @Html.DisplayNameFor(model => model.Code)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.RequestType)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Access)
                 </th>
             </tr>
@@ -34,6 +37,11 @@
                         </a>
                     </p>
 
+                </td>
+                <td>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.RequestType)
+                    </p>
                 </td>
                 <td>
                     <p>
